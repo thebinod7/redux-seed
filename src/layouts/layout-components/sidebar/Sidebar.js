@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { Nav, Collapse } from "reactstrap";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import FeatherIcon from "feather-icons-react";
+
+import { AppContext } from "../../../contexts/appContext";
 
 const Sidebar = (props) => {
   const activeRoute = (routeName) => {
@@ -14,18 +16,8 @@ const Sidebar = (props) => {
   const [cstate, csetState] = useState({
     extrapages: activeRoute("/sample-pages/extra-pages") !== "" ? true : false,
   });
-  const settings = {
-    activeDir: "ltr",
-    activeThemeLayout: "vertical",
-    activeTheme: "light",
-    activeSidebarType: "full",
-    activeLogoBg: "skin6",
-    activeNavbarBg: "skin1",
-    activeSidebarBg: "skin6",
-    activeSidebarPos: "fixed",
-    activeHeaderPos: "fixed",
-    activeLayout: "full",
-  };
+
+  const { settings } = useContext(AppContext);
 
   /*--------------------------------------------------------------------------------*/
   /*To Expand SITE_LOGO With Sidebar-Menu on Hover                                  */

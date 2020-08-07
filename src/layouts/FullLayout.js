@@ -1,25 +1,17 @@
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect, Suspense, useContext } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
+
 import Header from "./layout-components/header/Header";
 import Sidebar from "./layout-components/sidebar/Sidebar";
 import Footer from "./layout-components/footer/Footer";
 import AppRoutes from "../routes/Router";
 import Spinner from "../modules/spinner";
+import { AppContext } from "../contexts/appContext";
+
 export default (props) => {
   const [width, setWidth] = useState(window.innerWidth);
 
-  const settings = {
-    activeDir: "ltr",
-    activeThemeLayout: "vertical",
-    activeTheme: "light",
-    activeSidebarType: "full",
-    activeLogoBg: "skin6",
-    activeNavbarBg: "skin1",
-    activeSidebarBg: "skin6",
-    activeSidebarPos: "fixed",
-    activeHeaderPos: "fixed",
-    activeLayout: "full",
-  };
+  const { settings } = useContext(AppContext);
 
   useEffect(() => {
     const updateDimensions = () => {

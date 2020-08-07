@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   Nav,
   NavItem,
@@ -12,7 +12,9 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
+
 import * as data from "./Data";
+import { AppContext } from "../../../contexts/appContext";
 
 /*--------------------------------------------------------------------------------*/
 /* Import images which are need for the HEADER                                    */
@@ -26,18 +28,7 @@ import profilephoto from "../../../assets/images/users/1.jpg";
 export default () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const settings = {
-    activeDir: "ltr",
-    activeThemeLayout: "vertical",
-    activeTheme: "light",
-    activeSidebarType: "full",
-    activeLogoBg: "skin6",
-    activeNavbarBg: "skin1",
-    activeSidebarBg: "skin6",
-    activeSidebarPos: "fixed",
-    activeHeaderPos: "fixed",
-    activeLayout: "full",
-  };
+  const { settings } = useContext(AppContext);
 
   const toggle = () => {
     setIsOpen(!isOpen);
