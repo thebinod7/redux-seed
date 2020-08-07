@@ -3,8 +3,8 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import Header from "./layout-components/header/Header";
 import Sidebar from "./layout-components/sidebar/Sidebar";
 import Footer from "./layout-components/footer/Footer";
-import ThemeRoutes from "../routes/Router";
-import Spinner from "./../views/spinner/Spinner";
+import AppRoutes from "../routes/Router";
+import Spinner from "../modules/spinner";
 export default (props) => {
   const [width, setWidth] = useState(window.innerWidth);
 
@@ -83,7 +83,7 @@ export default (props) => {
       {/*--------------------------------------------------------------------------------*/}
       {/* Sidebar                                                                        */}
       {/*--------------------------------------------------------------------------------*/}
-      <Sidebar {...props} routes={ThemeRoutes} />
+      <Sidebar {...props} routes={AppRoutes} />
       {/*--------------------------------------------------------------------------------*/}
       {/* Page Main-Content                                                              */}
       {/*--------------------------------------------------------------------------------*/}
@@ -91,7 +91,7 @@ export default (props) => {
         <div className="page-content container-fluid">
           <Suspense fallback={<Spinner />}>
             <Switch>
-              {ThemeRoutes.map((prop, key) => {
+              {AppRoutes.map((prop, key) => {
                 if (prop.navlabel) {
                   return null;
                 } else if (prop.collapse) {

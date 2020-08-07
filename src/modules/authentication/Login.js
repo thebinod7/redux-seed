@@ -21,7 +21,7 @@ const sidebarBackground = {
   backgroundPosition: "bottom center",
 };
 
-const Login = (props) => {
+const Login = () => {
   const handleClick = () => {
     var elem = document.getElementById("loginform");
     elem.style.transition = "all 2s ease-in-out";
@@ -45,15 +45,15 @@ const Login = (props) => {
                 <img src={img1} alt="logo" />
               </span>
               <h5 className="font-medium mb-3">Sign In to Admin</h5>
-              <div className="alert alert-success">
+              {/* <div className="alert alert-success">
                 Username: test & Password: test
-              </div>
+              </div> */}
             </div>
             <Row>
               <Col xs="12">
                 <Formik
                   initialValues={{
-                    username: "test",
+                    username: "admin",
                     password: "test",
                   }}
                   validationSchema={Yup.object().shape({
@@ -138,22 +138,6 @@ const Login = (props) => {
                       <div className="text-center mb-2">
                         <div className="social">
                           <Button
-                            id="UncontrolledTooltipExample1"
-                            className="btn-facebook mr-2"
-                            color="primary"
-                          >
-                            <i
-                              aria-hidden="true"
-                              className="fab fa-facebook-f"
-                            ></i>
-                          </Button>
-                          <UncontrolledTooltip
-                            placement="top"
-                            target="UncontrolledTooltipExample1"
-                          >
-                            Facebook
-                          </UncontrolledTooltip>
-                          <Button
                             id="UncontrolledTooltipExample2"
                             className="btn-googleplus"
                             color="danger"
@@ -167,7 +151,7 @@ const Login = (props) => {
                             placement="top"
                             target="UncontrolledTooltipExample2"
                           >
-                            Google Plus
+                            Google Login
                           </UncontrolledTooltip>
                         </div>
                       </div>

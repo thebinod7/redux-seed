@@ -1,14 +1,13 @@
 import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom";
-import Spinner from "./views/spinner/Spinner";
+import Spinner from "./modules/spinner";
 import "./assets/scss/style.scss";
-// setup fake backend
 
-//const App = lazy(() =>(import('./app')));
+//const App = lazy(() => import("./app"));
 const App = lazy(
   () =>
     new Promise((resolve) => {
-      setTimeout(() => resolve(import("./app")), 0);
+      setTimeout(() => resolve(import("./app")), 2000);
     })
 );
 ReactDOM.render(

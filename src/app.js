@@ -5,6 +5,7 @@ import { History } from "./helpers/History";
 import { PrivateRoute } from "./routes/PrivateRoutes";
 import BlankLayout from "./layouts/BlankLayout";
 const App = () => {
+  console.log("INdex=====>", indexRoutes);
   return (
     <Router history={History}>
       <Switch>

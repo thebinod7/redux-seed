@@ -1,8 +1,8 @@
 import { lazy } from "react";
 
-const Dashboard = lazy(() => import("../views/dashboard/Dashboard"));
-const Requests = lazy(() => import("../views/requests/Requests"));
-var ThemeRoutes = [
+const Dashboard = lazy(() => import("../modules/dashboard/Dashboard"));
+const Requests = lazy(() => import("../modules/requests/Requests"));
+var AppRoutes = [
   // {
   //   navlabel: true,
   //   name: "Personal",
@@ -23,7 +23,7 @@ var ThemeRoutes = [
   {
     path: "/outbox",
     name: "Request Sent",
-    icon: "inbox",
+    icon: "send",
     component: Dashboard,
   },
   {
@@ -32,6 +32,29 @@ var ThemeRoutes = [
     icon: "file",
     component: Dashboard,
   },
+  {
+    collapse: true,
+    path: "/dashboard",
+    name: "Admin",
+    state: "dashboardpages",
+    icon: "lock",
+    child: [
+      {
+        path: "/settings",
+        name: "Settings",
+        mini: "B",
+        icon: "mdi mdi-adjust",
+        component: Requests,
+      },
+      {
+        path: "/users",
+        name: "Users",
+        mini: "B",
+        icon: "mdi mdi-adjust",
+        component: Dashboard,
+      },
+    ],
+  },
   { path: "/", pathTo: "/dashboard", name: "Dashboard", redirect: true },
 ];
-export default ThemeRoutes;
+export default AppRoutes;
