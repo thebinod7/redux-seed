@@ -7,7 +7,7 @@ import "./assets/scss/style.scss";
 const App = lazy(
   () =>
     new Promise((resolve) => {
-      setTimeout(() => resolve(import("./app")), 2000);
+      setTimeout(() => resolve(import("./modules/app")), 2000);
     })
 );
 ReactDOM.render(
