@@ -1,5 +1,4 @@
 import React, { useState, useEffect, Suspense } from "react";
-import { useSelector } from "react-redux";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Header from "./layout-components/header/Header";
 import Sidebar from "./layout-components/sidebar/Sidebar";
@@ -9,7 +8,18 @@ import Spinner from "./../views/spinner/Spinner";
 export default (props) => {
   const [width, setWidth] = useState(window.innerWidth);
 
-  const settings = useSelector((state) => state.settings);
+  const settings = {
+    activeDir: "ltr",
+    activeThemeLayout: "vertical",
+    activeTheme: "light",
+    activeSidebarType: "full",
+    activeLogoBg: "skin6",
+    activeNavbarBg: "skin1",
+    activeSidebarBg: "skin6",
+    activeSidebarPos: "fixed",
+    activeHeaderPos: "fixed",
+    activeLayout: "full",
+  };
 
   useEffect(() => {
     const updateDimensions = () => {

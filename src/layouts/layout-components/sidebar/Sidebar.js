@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Nav, Collapse } from "reactstrap";
 import PerfectScrollbar from "react-perfect-scrollbar";
-import { useSelector } from "react-redux";
 import FeatherIcon from "feather-icons-react";
 
 const Sidebar = (props) => {
@@ -15,7 +14,18 @@ const Sidebar = (props) => {
   const [cstate, csetState] = useState({
     extrapages: activeRoute("/sample-pages/extra-pages") !== "" ? true : false,
   });
-  const settings = useSelector((state) => state.settings);
+  const settings = {
+    activeDir: "ltr",
+    activeThemeLayout: "vertical",
+    activeTheme: "light",
+    activeSidebarType: "full",
+    activeLogoBg: "skin6",
+    activeNavbarBg: "skin1",
+    activeSidebarBg: "skin6",
+    activeSidebarPos: "fixed",
+    activeHeaderPos: "fixed",
+    activeLayout: "full",
+  };
 
   /*--------------------------------------------------------------------------------*/
   /*To Expand SITE_LOGO With Sidebar-Menu on Hover                                  */

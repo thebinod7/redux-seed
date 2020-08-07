@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
 import {
   Nav,
   NavItem,
@@ -27,7 +26,18 @@ import profilephoto from "../../../assets/images/users/1.jpg";
 export default () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const settings = useSelector((state) => state.settings);
+  const settings = {
+    activeDir: "ltr",
+    activeThemeLayout: "vertical",
+    activeTheme: "light",
+    activeSidebarType: "full",
+    activeLogoBg: "skin6",
+    activeNavbarBg: "skin1",
+    activeSidebarBg: "skin6",
+    activeSidebarPos: "fixed",
+    activeHeaderPos: "fixed",
+    activeLayout: "full",
+  };
 
   const toggle = () => {
     setIsOpen(!isOpen);
