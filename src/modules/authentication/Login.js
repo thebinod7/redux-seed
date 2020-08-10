@@ -29,6 +29,12 @@ const Login = () => {
     document.getElementById("recoverform").style.display = "block";
   };
 
+  const handleLoginClick = () => {
+    let obj = { name: "Admin", id: 12345 };
+    localStorage.setItem("currentUser", JSON.stringify(obj));
+    window.location.replace("/");
+  };
+
   return (
     <div className="">
       {/*--------------------------------------------------------------------------------*/}
@@ -127,9 +133,10 @@ const Login = () => {
                       <Row className="mb-3">
                         <Col xs="12">
                           <button
-                            type="submit"
+                            type="button"
                             className="btn btn-block btn-primary"
                             disabled={isSubmitting}
+                            onClick={handleLoginClick}
                           >
                             Login
                           </button>
