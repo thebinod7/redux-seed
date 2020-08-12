@@ -15,6 +15,7 @@ import {
 
 import * as data from "./Data";
 import { AppContext } from "../../../contexts/appContext";
+import { UserContextProvider } from "../../../contexts/userContext";
 
 /*--------------------------------------------------------------------------------*/
 /* Import images which are need for the HEADER                                    */
@@ -64,178 +65,200 @@ export default () => {
     }
   };
 
+  // TODO create child element to access user context.
+
   return (
-    <header className="topbar navbarbg" data-navbarbg={settings.activeNavbarBg}>
-      <Navbar
-        className={
-          "top-navbar " +
-          (settings.activeNavbarBg === "skin6" ? "navbar-light" : "navbar-dark")
-        }
-        expand="md"
+    <UserContextProvider>
+      <header
+        className="topbar navbarbg"
+        data-navbarbg={settings.activeNavbarBg}
       >
-        <div
-          className="navbar-header"
-          id="logobg"
-          data-logobg={settings.activeLogoBg}
+        <Navbar
+          className={
+            "top-navbar " +
+            (settings.activeNavbarBg === "skin6"
+              ? "navbar-light"
+              : "navbar-dark")
+          }
+          expand="md"
         >
-          {/*--------------------------------------------------------------------------------*/}
-          {/* Mobile View Toggler  [visible only after 768px screen]                         */}
-          {/*--------------------------------------------------------------------------------*/}
-          <span
-            className="nav-toggler d-block d-md-none"
-            onClick={showMobilemenu.bind(null)}
+          <div
+            className="navbar-header"
+            id="logobg"
+            data-logobg={settings.activeLogoBg}
           >
-            <i className="ti-menu ti-close" />
-          </span>
-          {/*--------------------------------------------------------------------------------*/}
-          {/* Logos Or Icon will be goes here for Light Layout && Dark Layout                */}
-          {/*--------------------------------------------------------------------------------*/}
-          <NavbarBrand href="/">
-            <b className="logo-icon">
-              <img src={logodarkicon} alt="homepage" className="dark-logo" />
-              <img src={logolighticon} alt="homepage" className="light-logo" />
-            </b>
-            <span className="logo-text">
-              <img src={logodarktext} alt="homepage" className="dark-logo" />
-              <img src={logolighttext} className="light-logo" alt="homepage" />
+            {/*--------------------------------------------------------------------------------*/}
+            {/* Mobile View Toggler  [visible only after 768px screen]                         */}
+            {/*--------------------------------------------------------------------------------*/}
+            <span
+              className="nav-toggler d-block d-md-none"
+              onClick={showMobilemenu.bind(null)}
+            >
+              <i className="ti-menu ti-close" />
             </span>
-          </NavbarBrand>
-          {/*--------------------------------------------------------------------------------*/}
-          {/* Mobile View Toggler  [visible only after 768px screen]                         */}
-          {/*--------------------------------------------------------------------------------*/}
-          <span
-            className="topbartoggler d-block d-md-none"
-            onClick={toggle.bind(null)}
-          >
-            <i className="ti-more" />
-          </span>
-        </div>
-        <Collapse
-          className="navbarbg"
-          isOpen={isOpen}
-          navbar
-          data-navbarbg={settings.activeNavbarBg}
-        >
-          <Nav className="float-left" navbar>
-            <NavItem>
-              <NavLink
-                href="#"
-                className="d-none d-md-block"
-                onClick={sidebarHandler.bind(null)}
-              >
-                <i className="ti-menu" />
-              </NavLink>
-            </NavItem>
             {/*--------------------------------------------------------------------------------*/}
-          </Nav>
-          <Nav className="ml-auto float-right" navbar>
+            {/* Logos Or Icon will be goes here for Light Layout && Dark Layout                */}
             {/*--------------------------------------------------------------------------------*/}
-            {/* Start Notifications Dropdown                                                   */}
-            {/*--------------------------------------------------------------------------------*/}
-            <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                <i className="mdi mdi-bell font-24" />
-              </DropdownToggle>
-              <DropdownMenu right className="mailbox">
-                <span className="with-arrow">
-                  <span className="bg-primary" />
-                </span>
-                <div className="d-flex drop-title no-block align-items-center p-3 bg-primary text-white mb-2">
-                  <div className="">
-                    <h4 className="mb-0">4 New</h4>
-                    <p className="mb-0">Notifications</p>
-                  </div>
-                </div>
-                <div className="message-center notifications">
-                  {/*<!-- Message -->*/}
-                  {data.notifications.map((notification, index) => {
-                    return (
-                      <span href="" className="message-item" key={index}>
-                        <span
-                          className={
-                            "btn btn-circle btn-" + notification.iconbg
-                          }
-                        >
-                          <i className={notification.iconclass} />
-                        </span>
-                        <div className="mail-contnet">
-                          <h5 className="message-title">
-                            {notification.title}
-                          </h5>
-                          <span className="mail-desc">{notification.desc}</span>
-                          <span className="time">{notification.time}</span>
-                        </div>
-                      </span>
-                    );
-                  })}
-                </div>
-                <a className="nav-link text-center mb-1 text-dark" href=";">
-                  <strong>Check all notifications</strong>{" "}
-                  <i className="fa fa-angle-right" />
-                </a>
-              </DropdownMenu>
-            </UncontrolledDropdown>
-            {/*--------------------------------------------------------------------------------*/}
-            {/* End Notifications Dropdown                                                     */}
-            {/*--------------------------------------------------------------------------------*/}
-            {/* Start Profile Dropdown                                                         */}
-            {/*--------------------------------------------------------------------------------*/}
-            <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret className="pro-pic">
+            <NavbarBrand href="/">
+              <b className="logo-icon">
+                <img src={logodarkicon} alt="homepage" className="dark-logo" />
                 <img
-                  src={profilephoto}
-                  alt="user"
-                  className="rounded-circle"
-                  width="31"
+                  src={logolighticon}
+                  alt="homepage"
+                  className="light-logo"
                 />
-              </DropdownToggle>
-              <DropdownMenu right className="user-dd">
-                <span className="with-arrow">
-                  <span className="bg-primary" />
-                </span>
-                <div className="d-flex no-block align-items-center p-3 bg-primary text-white mb-2">
-                  <div className="">
-                    <img
-                      src={profilephoto}
-                      alt="user"
-                      className="rounded-circle"
-                      width="60"
-                    />
-                  </div>
-                  <div className="ml-2">
-                    <h4 className="mb-0">Steave Jobs</h4>
-                    <p className=" mb-0">varun@gmail.com</p>
-                  </div>
-                </div>
-                <DropdownItem>
-                  <i className="ti-user mr-1 ml-1" /> My Account
-                </DropdownItem>
-                <DropdownItem>
-                  <i className="ti-wallet mr-1 ml-1" /> My Balance
-                </DropdownItem>
-                <DropdownItem>
-                  <i className="ti-email mr-1 ml-1" /> Inbox
-                </DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>
-                  <i className="ti-settings mr-1 ml-1" /> Account Settings
-                </DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem href="/pages/login">
-                  <i className="fa fa-power-off mr-1 ml-1" /> Logout
-                </DropdownItem>
-                <DropdownItem divider />
-                <Button color="success" className="btn-rounded ml-3 mb-2 mt-2">
-                  View Profile
-                </Button>
-              </DropdownMenu>
-            </UncontrolledDropdown>
+              </b>
+              <span className="logo-text">
+                <img src={logodarktext} alt="homepage" className="dark-logo" />
+                <img
+                  src={logolighttext}
+                  className="light-logo"
+                  alt="homepage"
+                />
+              </span>
+            </NavbarBrand>
             {/*--------------------------------------------------------------------------------*/}
-            {/* End Profile Dropdown                                                           */}
+            {/* Mobile View Toggler  [visible only after 768px screen]                         */}
             {/*--------------------------------------------------------------------------------*/}
-          </Nav>
-        </Collapse>
-      </Navbar>
-    </header>
+            <span
+              className="topbartoggler d-block d-md-none"
+              onClick={toggle.bind(null)}
+            >
+              <i className="ti-more" />
+            </span>
+          </div>
+          <Collapse
+            className="navbarbg"
+            isOpen={isOpen}
+            navbar
+            data-navbarbg={settings.activeNavbarBg}
+          >
+            <Nav className="float-left" navbar>
+              <NavItem>
+                <NavLink
+                  href="#"
+                  className="d-none d-md-block"
+                  onClick={sidebarHandler.bind(null)}
+                >
+                  <i className="ti-menu" />
+                </NavLink>
+              </NavItem>
+              {/*--------------------------------------------------------------------------------*/}
+            </Nav>
+            <Nav className="ml-auto float-right" navbar>
+              {/*--------------------------------------------------------------------------------*/}
+              {/* Start Notifications Dropdown                                                   */}
+              {/*--------------------------------------------------------------------------------*/}
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                  <i className="mdi mdi-bell font-24" />
+                </DropdownToggle>
+                <DropdownMenu right className="mailbox">
+                  <span className="with-arrow">
+                    <span className="bg-primary" />
+                  </span>
+                  <div className="d-flex drop-title no-block align-items-center p-3 bg-primary text-white mb-2">
+                    <div className="">
+                      <h4 className="mb-0">4 New</h4>
+                      <p className="mb-0">Notifications</p>
+                    </div>
+                  </div>
+                  <div className="message-center notifications">
+                    {/*<!-- Message -->*/}
+                    {data.notifications.map((notification, index) => {
+                      return (
+                        <span href="" className="message-item" key={index}>
+                          <span
+                            className={
+                              "btn btn-circle btn-" + notification.iconbg
+                            }
+                          >
+                            <i className={notification.iconclass} />
+                          </span>
+                          <div className="mail-contnet">
+                            <h5 className="message-title">
+                              {notification.title}
+                            </h5>
+                            <span className="mail-desc">
+                              {notification.desc}
+                            </span>
+                            <span className="time">{notification.time}</span>
+                          </div>
+                        </span>
+                      );
+                    })}
+                  </div>
+                  <a className="nav-link text-center mb-1 text-dark" href=";">
+                    <strong>Check all notifications</strong>{" "}
+                    <i className="fa fa-angle-right" />
+                  </a>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+              {/*--------------------------------------------------------------------------------*/}
+              {/* End Notifications Dropdown                                                     */}
+              {/*--------------------------------------------------------------------------------*/}
+              {/* Start Profile Dropdown                                                         */}
+              {/*--------------------------------------------------------------------------------*/}
+              <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret className="pro-pic">
+                  <img
+                    src={profilephoto}
+                    alt="user"
+                    className="rounded-circle"
+                    width="31"
+                  />
+                </DropdownToggle>
+                <DropdownMenu right className="user-dd">
+                  <span className="with-arrow">
+                    <span className="bg-primary" />
+                  </span>
+                  <div className="d-flex no-block align-items-center p-3 bg-primary text-white mb-2">
+                    <div className="">
+                      <img
+                        src={profilephoto}
+                        alt="user"
+                        className="rounded-circle"
+                        width="60"
+                      />
+                    </div>
+                    <div className="ml-2">
+                      <h4 className="mb-0">Steave Jobs</h4>
+                      <p className=" mb-0">varun@gmail.com</p>
+                    </div>
+                  </div>
+                  <DropdownItem>
+                    <i className="ti-user mr-1 ml-1" /> My Account
+                  </DropdownItem>
+                  <DropdownItem>
+                    <i className="ti-wallet mr-1 ml-1" /> My Balance
+                  </DropdownItem>
+                  <DropdownItem>
+                    <i className="ti-email mr-1 ml-1" /> Inbox
+                  </DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem>
+                    <i className="ti-settings mr-1 ml-1" /> Account Settings
+                  </DropdownItem>
+                  <DropdownItem divider />
+                  <DropdownItem href="/pages/login">
+                    <i className="fa fa-power-off mr-1 ml-1" /> Logout
+                  </DropdownItem>
+                  <DropdownItem divider />
+                  <Button
+                    color="success"
+                    className="btn-rounded ml-3 mb-2 mt-2"
+                  >
+                    View Profile
+                  </Button>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+              {/*--------------------------------------------------------------------------------*/}
+              {/* End Profile Dropdown                                                           */}
+              {/*--------------------------------------------------------------------------------*/}
+            </Nav>
+          </Collapse>
+        </Navbar>
+      </header>
+    </UserContextProvider>
   );
 };

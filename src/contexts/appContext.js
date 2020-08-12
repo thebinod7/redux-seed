@@ -1,5 +1,5 @@
 import React, { createContext, useReducer } from "react";
-import reduceCategory from "../reducers/appReducer";
+import appReduce from "../reducers/appReducer";
 
 const initialState = {
   settings: {
@@ -18,7 +18,7 @@ const initialState = {
 
 export const AppContext = createContext(initialState);
 export const AppContextProvider = ({ children }) => {
-  const [state] = useReducer(reduceCategory, initialState);
+  const [state] = useReducer(appReduce, initialState);
 
   return (
     <AppContext.Provider
